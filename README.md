@@ -1,6 +1,6 @@
 # SVGDrillDown
 
-Windows Desktop App that converts Carbide Create SVG file to Shapeoko 3 Gcode for simple hole drilling.
+Windows Forms Desktop App that converts Carbide Create SVG file to Shapeoko 3 Gcode for simple hole drilling.
 
 Background
 
