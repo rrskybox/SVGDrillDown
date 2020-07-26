@@ -1,6 +1,7 @@
 # SVGDrillDown
 
 Windows Forms Desktop App that converts Carbide Create SVG file to Shapeoko 3 Gcode for simple hole drilling.
+Only supports drilling using a single bit per job.
 
 Background
 
@@ -16,7 +17,7 @@ Procedure
 5. Launch SVGDrillDown -> Set stock width, drill depth, feed speed and plunge speed.
 6. SVGDrillDown -> Open SVG to select *.svg file.
 7. SVGDrillDown -> Save Gcode to save converted gcode.
-8. Launch Carbide Motion, inialize Shapeoko, zero at lower left corner of stock (see #3).
+8. Launch Carbide Motion: install bit, inialize Shapeoko, zero at lower left corner of stock (see #3).
 9. Run job.
 
 Software
