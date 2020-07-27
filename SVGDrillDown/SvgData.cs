@@ -61,9 +61,9 @@ namespace SVGDrillDown
                     case CircleEntry:
                         {
                             IEnumerable<XAttribute> xat = xe.Attributes();
+                            DrillPoint dp = new DrillPoint();
                             foreach (XAttribute a in xat)
                             {
-                                DrillPoint dp = new DrillPoint();
                                 switch (a.Name.LocalName)
                                 {
                                     case CXElement:
@@ -82,8 +82,8 @@ namespace SVGDrillDown
                                             break;
                                         }
                                 }
-                                dPoints.Add(dp);
                             }
+                            dPoints.Add(dp);
                             break;
                         };
                     case PathEntry:
@@ -103,7 +103,7 @@ namespace SVGDrillDown
                                 }
                             };
                             break;
-                                                    }
+                        }
                         //else no line or something unexpected...  Continue
                 }
             }
@@ -140,7 +140,7 @@ namespace SVGDrillDown
             public double Raise;  //Height, in inches, to lift before moving
             public double Plunge;  //Speed, in inches per sec, to drill into material
         }
-        
+
         public class Mapper
         {
             public int PixHeight { get; set; }
