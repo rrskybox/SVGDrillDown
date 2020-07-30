@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,10 +7,8 @@ namespace SVGDrillDown
 {
     public partial class FormSVGDrillDown : Form
     {
-                double imageScale;
-        //SVGReader svRead;
+        double imageScale;
         SvgData drawData;
-        string gCodeOut = "";
 
         public FormSVGDrillDown()
         {
@@ -34,7 +33,17 @@ namespace SVGDrillDown
                 imageScale = drawData.pMap.PixWidth / (double)StockWidthBox.Value;
             }
 
-            //Decode the svg file contents and generate Gcode
+       }
+
+        private string AddLine(string inLine, string addLine)
+        {
+            return inLine + addLine + "\n";
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+         string gCodeOut = "";
+           //Decode the svg file contents and generate Gcode
 
             double drillDepthmm = (double)DrillDepthBox.Value * 25.4;
             double mmPerPix = 25.4 / imageScale;
@@ -65,15 +74,28 @@ namespace SVGDrillDown
             //gCodeOut = AddLine(gCodeOut, "G1Z12.5F203");  //Lower Z to clearance level
             gCodeOut = AddLine(gCodeOut, "G1X0Y0F" + feedRate);  // Move to 1" clearance level at origin
 
+            //Note: starts from top as pixel
+            double xCenterPix, yCenterPix;
+            if (CenterOriginButton.Checked)
+            {
+                xCenterPix = drawData.pMap.PixWidth / 2;
+                yCenterPix = drawData.pMap.PixHeight / 2;
+            }
+            else
+            {
+                xCenterPix = 0;
+                yCenterPix = drawData.pMap.PixHeight;
+            }
+
             // foreach (SVGReader.DrillPoint dp in svRead.dPoints)
             foreach (SvgData.DrillPoint dp in drawData.dPoints)
             {
-                //Note: starts from top as pixel
-                string xPos = (dp.X * mmPerPix).ToString("0.00");
-                string yPos = ((drawData.pMap.PixHeight - dp.Y) * mmPerPix).ToString("0.00");
+
+                string xPlot = ((dp.X - xCenterPix) * mmPerPix).ToString("0.00");
+                string yPlot = ((yCenterPix - dp.Y) * mmPerPix).ToString("0.00");
 
                 //Drill Holes
-                gCodeOut = AddLine(gCodeOut, "G1" + "X" + xPos + "Y" + yPos + "F" + feedRate); // Hole X:  Y:
+                gCodeOut = AddLine(gCodeOut, "G1" + "X" + xPlot + "Y" + yPlot + "F" + feedRate); // Hole X:  Y:
                 gCodeOut = AddLine(gCodeOut, "G1" + "Z0" + "F" + feedRate); ; // Drop to surface
                 gCodeOut = AddLine(gCodeOut, "G1" + "Z" + zPos + "F" + plungeRate); // Make Hole
                 gCodeOut = AddLine(gCodeOut, "G1" + "Z" + moveZpos + "F" + feedRate); //Move to clearance level (.5 inches)
@@ -83,15 +105,7 @@ namespace SVGDrillDown
             gCodeOut = AddLine(gCodeOut, "Z" + safeZpos);
             gCodeOut = AddLine(gCodeOut, "M05");  //Turn off spindle
             gCodeOut = AddLine(gCodeOut, "M02");
-        }
 
-        private string AddLine(string inLine, string addLine)
-        {
-            return inLine + addLine + "\n";
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
             //Opens and loads the SVG file
             DialogResult dr = SaveGcodeFileDialog.ShowDialog();
             if (dr == DialogResult.OK)

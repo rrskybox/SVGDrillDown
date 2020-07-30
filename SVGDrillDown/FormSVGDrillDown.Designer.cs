@@ -40,10 +40,14 @@
             this.FeedRateBox = new System.Windows.Forms.NumericUpDown();
             this.SaveButton = new System.Windows.Forms.Button();
             this.SaveGcodeFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.CenterOriginButton = new System.Windows.Forms.RadioButton();
+            this.NearLeftOriginButton = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.StockWidthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrillDepthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlungeRateBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FeedRateBox)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenSVGFileDialog
@@ -52,7 +56,7 @@
             // 
             // OpenSVGButton
             // 
-            this.OpenSVGButton.Location = new System.Drawing.Point(12, 131);
+            this.OpenSVGButton.Location = new System.Drawing.Point(12, 170);
             this.OpenSVGButton.Margin = new System.Windows.Forms.Padding(2);
             this.OpenSVGButton.Name = "OpenSVGButton";
             this.OpenSVGButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -165,7 +169,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(176, 131);
+            this.SaveButton.Location = new System.Drawing.Point(176, 170);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -175,11 +179,45 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // CenterOriginButton
+            // 
+            this.CenterOriginButton.AutoSize = true;
+            this.CenterOriginButton.Checked = true;
+            this.CenterOriginButton.Location = new System.Drawing.Point(49, 19);
+            this.CenterOriginButton.Name = "CenterOriginButton";
+            this.CenterOriginButton.Size = new System.Drawing.Size(56, 17);
+            this.CenterOriginButton.TabIndex = 12;
+            this.CenterOriginButton.TabStop = true;
+            this.CenterOriginButton.Text = "Center";
+            this.CenterOriginButton.UseVisualStyleBackColor = true;
+            // 
+            // NearLeftOriginButton
+            // 
+            this.NearLeftOriginButton.AutoSize = true;
+            this.NearLeftOriginButton.Location = new System.Drawing.Point(121, 19);
+            this.NearLeftOriginButton.Name = "NearLeftOriginButton";
+            this.NearLeftOriginButton.Size = new System.Drawing.Size(69, 17);
+            this.NearLeftOriginButton.TabIndex = 13;
+            this.NearLeftOriginButton.Text = "Near Left";
+            this.NearLeftOriginButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.CenterOriginButton);
+            this.groupBox1.Controls.Add(this.NearLeftOriginButton);
+            this.groupBox1.Location = new System.Drawing.Point(0, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(226, 51);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Origin";
+            // 
             // FormSVGDrillDown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(247, 179);
+            this.ClientSize = new System.Drawing.Size(247, 217);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.FeedRateBox);
@@ -197,6 +235,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DrillDepthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlungeRateBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FeedRateBox)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,6 +256,9 @@
         private System.Windows.Forms.NumericUpDown FeedRateBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.SaveFileDialog SaveGcodeFileDialog;
+        private System.Windows.Forms.RadioButton CenterOriginButton;
+        private System.Windows.Forms.RadioButton NearLeftOriginButton;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
