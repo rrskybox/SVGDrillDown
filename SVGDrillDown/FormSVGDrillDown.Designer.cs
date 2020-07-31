@@ -43,6 +43,7 @@
             this.CenterOriginButton = new System.Windows.Forms.RadioButton();
             this.NearLeftOriginButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.VerifyGcodeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.StockWidthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrillDepthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlungeRateBox)).BeginInit();
@@ -169,7 +170,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(176, 170);
+            this.SaveButton.Location = new System.Drawing.Point(186, 170);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -212,11 +213,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Origin";
             // 
+            // VerifyGcodeButton
+            // 
+            this.VerifyGcodeButton.Location = new System.Drawing.Point(106, 170);
+            this.VerifyGcodeButton.Margin = new System.Windows.Forms.Padding(2);
+            this.VerifyGcodeButton.Name = "VerifyGcodeButton";
+            this.VerifyGcodeButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.VerifyGcodeButton.Size = new System.Drawing.Size(50, 36);
+            this.VerifyGcodeButton.TabIndex = 15;
+            this.VerifyGcodeButton.Text = "Verify Gcode";
+            this.VerifyGcodeButton.UseVisualStyleBackColor = true;
+            this.VerifyGcodeButton.Click += new System.EventHandler(this.VerifyGcodeButton_Click);
+            // 
             // FormSVGDrillDown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 217);
+            this.Controls.Add(this.VerifyGcodeButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label4);
@@ -259,6 +273,7 @@
         private System.Windows.Forms.RadioButton CenterOriginButton;
         private System.Windows.Forms.RadioButton NearLeftOriginButton;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button VerifyGcodeButton;
     }
 }
 

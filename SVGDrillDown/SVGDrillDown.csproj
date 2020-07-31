@@ -26,7 +26,7 @@
     <ProductName>SVG Drill Down</ProductName>
     <PublisherName>ShapeokoTools</PublisherName>
     <SuiteName>ShapeokoTools</SuiteName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

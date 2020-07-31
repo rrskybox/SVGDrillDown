@@ -42,8 +42,33 @@ namespace SVGDrillDown
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-         string gCodeOut = "";
-           //Decode the svg file contents and generate Gcode
+            //Generate Gcode
+            string gCodeOut = GenerateGcode();
+
+            //Opens and loads the SVG file
+            DialogResult dr = SaveGcodeFileDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                string gcodePath = SaveGcodeFileDialog.FileName;
+                File.WriteAllText(gcodePath, gCodeOut);
+            }
+        }
+
+        private void VerifyGcodeButton_Click(object sender, EventArgs e)
+        {
+            //Generate Gcode
+            string gCodeOut = GenerateGcode();
+             //copy gcode to clipboard
+           Clipboard.SetText(gCodeOut);
+            //Open website
+            System.Diagnostics.Process.Start("https://nraynaud.github.io/webgcode/");
+
+        }
+
+        private string GenerateGcode()
+        {
+            string gCodeOut = "";
+            //Decode the svg file contents and generate Gcode
 
             double drillDepthmm = (double)DrillDepthBox.Value * 25.4;
             double mmPerPix = 25.4 / imageScale;
@@ -106,13 +131,7 @@ namespace SVGDrillDown
             gCodeOut = AddLine(gCodeOut, "M05");  //Turn off spindle
             gCodeOut = AddLine(gCodeOut, "M02");
 
-            //Opens and loads the SVG file
-            DialogResult dr = SaveGcodeFileDialog.ShowDialog();
-            if (dr == DialogResult.OK)
-            {
-                string gcodePath = SaveGcodeFileDialog.FileName;
-                File.WriteAllText(gcodePath, gCodeOut);
-            }
+            return gCodeOut;
         }
     }
 }
